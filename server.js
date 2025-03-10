@@ -1,26 +1,40 @@
-
 const express = require('express');
 const { exec } = require('child_process');
 const app = express();
-const port = 3000;
+const port = 8080;  // This must match the NGROK forwarding port
 
+// API to handle server commands
 app.use(express.json());
 
 app.post('/api/server/:command', (req, res) => {
-  const cmd = req.params.command;
-  if (cmd === 'start') {
-    exec('start /B java -jar beta_server.jar', (err) => {
-      if (err) return res.send('❌ Failed to start.');
-      res.send('✅ Server started!');
+  const command = req.params.command;
+
+  if (command === 'start') {
+    exec('java -Xmx2G -Xms1G -jar minecraft_server.1.0.2.jar', (error, stdout, stderr) => {
+      if (error) {
+        return res.status(500).send('Error starting the server: ' + error.message);
+      }
+      res.send(stdout);
     });
-  } else if (cmd === 'stop' || cmd === 'force-stop') {
-    exec('taskkill /IM java.exe /F', (err) => {
-      if (err) return res.send('❌ Failed to stop.');
-      res.send('✅ Server stopped!');
+  } else if (command === 'stop') {
+    exec('stop', (error, stdout, stderr) => {
+      if (error) {
+        return res.status(500).send('Error stopping the server: ' + error.message);
+      }
+      res.send(stdout);
+    });
+  } else if (command === 'force-stop') {
+    exec('taskkill /IM java.exe /F', (error, stdout, stderr) => {
+      if (error) {
+        return res.status(500).send('Error force-stopping the server: ' + error.message);
+      }
+      res.send(stdout);
     });
   } else {
-    res.send('❌ Unknown command.');
+    res.status(400).send('Invalid command!');
   }
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});

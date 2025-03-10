@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Minecraft Beta Server Panel</title>
   <style>
-    body { font-family: Arial; background: #151515; color: white; text-align: center; padding: 20px; }
+    body { font-family: Arial, sans-serif; background: #151515; color: white; text-align: center; padding: 20px; }
     .page { display: none; transition: 0.5s; }
     .active { display: block; }
     button { margin: 10px; padding: 12px 25px; background: #4CAF50; color: white; border: none; border-radius: 15px; font-size: 16px; transition: 0.3s; }
@@ -48,10 +48,10 @@
   }
 
   function sendCommand(cmd) {
-    const ngrokUrl = 'https://4523-2001-16a2-c0d9-9d95-9813-7203-7b76-28de.ngrok-free.app'; // Replace with your Ngrok URL
-    fetch(ngrokUrl + '/api/server/' + cmd, { method: 'POST' })
+    // Replace 'YOUR-NGROK-URL' with the actual NGROK URL you received
+    fetch('https://7da7-2001-16a2-c0d9-9d95-9813-7203-7b76-28de.ngrok-free.app/api/server/' + cmd, { method: 'POST' })
       .then(res => res.text())
-      .then(response => alert(response))
+      .then(alert)
       .catch(() => alert('Failed to send command!'));
   }
 </script>
