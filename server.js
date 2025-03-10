@@ -10,7 +10,7 @@ app.post('/api/server/:command', (req, res) => {
   const command = req.params.command;
 
   if (command === 'start') {
-    exec('java -Xmx2G -Xms1G -jar minecraft_server.1.0.2.jar', (error, stdout, stderr) => {
+    exec('java -Xmx2G -Xms1G -jar minecraft_server1.0.2.jar', (error, stdout, stderr) => {
       if (error) {
         return res.status(500).send('Error starting the server: ' + error.message);
       }

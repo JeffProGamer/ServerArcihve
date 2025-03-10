@@ -1,0 +1,11 @@
+2025-03-10 22:05:25 [INFO] Starting minecraft server version Beta 1.0
+2025-03-10 22:05:25 [INFO] Loading properties
+2025-03-10 22:05:25 [WARNING] server.properties does not exist
+2025-03-10 22:05:25 [INFO] Generating new properties file
+2025-03-10 22:05:25 [INFO] Starting Minecraft server on *:25565
+2025-03-10 22:05:25 [WARNING] Failed to load ban list: java.io.FileNotFoundException: banned-players.txt (The system cannot find the file specified)
+2025-03-10 22:05:25 [WARNING] Failed to load ip ban list: java.io.FileNotFoundException: banned-ips.txt (The system cannot find the file specified)
+2025-03-10 22:05:25 [WARNING] Failed to load ip ban list: java.io.FileNotFoundException: ops.txt (The system cannot find the file specified)
+2025-03-10 22:05:25 [INFO] Preparing level "world"
+2025-03-10 22:05:25 [INFO] Preparing start region
+2025-03-10 22:05:29 [INFO] Done! For help, type "help" or "?"
