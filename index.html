@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minecraft Beta Server Panel</title>
+  <style>
+    body { font-family: Arial; background: #151515; color: white; text-align: center; padding: 20px; }
+    .page { display: none; transition: 0.5s; }
+    .active { display: block; }
+    button { margin: 10px; padding: 12px 25px; background: #4CAF50; color: white; border: none; border-radius: 15px; font-size: 16px; transition: 0.3s; }
+    button:hover { background: #45a049; transform: scale(1.05); }
+    input { margin: 10px; padding: 10px; border-radius: 10px; border: none; }
+    h1 { margin-bottom: 30px; }
+  </style>
+</head>
+<body>
+
+<div id="login" class="page active">
+  <h1>Owner Login</h1>
+  <input type="text" id="username" placeholder="Username"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+  <button onclick="login()">Login</button>
+</div>
+
+<div id="panel" class="page">
+  <h1>Minecraft Beta 1.0.2 Server</h1>
+  <button onclick="sendCommand('start')">Start Server</button>
+  <button onclick="sendCommand('stop')">Stop Server</button>
+  <button onclick="sendCommand('force-stop')">Force Stop</button>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+  const user = "Jeff_pro_gamer_351", pass = "Faisal.2010.";
+
+  function login() {
+    const u = document.getElementById('username').value;
+    const p = document.getElementById('password').value;
+    if (u === user && p === pass) {
+      document.getElementById('login').classList.remove('active');
+      document.getElementById('panel').classList.add('active');
+    } else alert('Wrong credentials!');
+  }
+
+  function logout() {
+    document.getElementById('panel').classList.remove('active');
+    document.getElementById('login').classList.add('active');
+  }
+
+  function sendCommand(cmd) {
+    fetch('https://YOUR-NGROK-URL/api/server/' + cmd, { method: 'POST' })
+      .then(res => res.text()).then(alert).catch(() => alert('Failed to send command!'));
+  }
+</script>
+
+</body>
+</html>
